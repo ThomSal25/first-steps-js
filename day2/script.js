@@ -43,7 +43,7 @@ Coding Task:
 Create one console.log that returns true 
 when both division results are equal to 5*/
 
-console.log(25 / 5 === 50 / 10);
+console.log(25 / 5 === 5 && 50 / 10 === 5);
 
 /*01.2) The opposite value
 Given:
@@ -53,7 +53,15 @@ Use the logical not Operator to override the
 isActive variable value with the opposite of 
 it's current value.*/
 
-let isActive = !(true);
+let isActive = true; //1xtoggle --> false 2xtoggle --> true ....
+
+function toggle() {
+  isActive = !isActive; //toggle --> change on/off
+}
+
+toggle();
+toggle();
+
 console.log(isActive);
 
 /*02) Functions
@@ -69,19 +77,35 @@ Coding Task:
  strings. If not just return "Hello Guest.".*/
 
 function welcome(message, name) {
-    if (message === "Hi" && name === "Max") {
-        console.log(message + " " + name);
-    } else if (message === "Welcome" && name === "Frank") {
-        console.log(message + " " + name);
-    } else if (message === "Servus" && name === "Jan") {
-        console.log(message + " " + name);
-    } else {
-        console.log("Hello Guest");
-    } 
- }
+  if (message !== "" && name !== "") {
+    return message + " " + name;
+  } else {
+    return "Hello Guest";
+  }
+}
 
- console.log(welcome());
+console.log(welcome("Moin", ""));
+console.log(welcome("Hi", "Max"));
 
+//Alternative
+// function welcome(message="Hi", person="Max") {
+// //   message = "Hi";
+// //   person = "Max";
+// let result = message +" "+ person;
+
+//   if (
+//     message !== undefined &&
+//     person !== undefined &&
+//     typeof message === "string" &&
+//     typeof person === "string"
+//   ) {
+//     return result;
+//   } else {
+//     return "Hello Guest.";
+//   }
+// }
+// console.log(welcome());
+// console.log(welcome("Moin", "Joe"));
 
 /*02) Functions
 02.2) Firstname lastname
@@ -106,35 +130,52 @@ Coding Task:
  Check if the fullName is empty.
  Ensure that setFirstName and setLastName was executed before.*/
 
-let fullName;
-fullName = setFirstName("Thomas") + setLastName("Salmann");
+let fullName = "";
+let isSetFirstNameExecuted = false;
+let isSetLastNameExecuted = false;
+// fullName = setFirstName("Thomas") + setLastName("Salmann");
 
-function setFirstName(fName) { //Add a parameter on both, and
-    if (fName !== undefined && typeof fName === "string") { //check if the parameter exists and is a string
-        return fName;
-    }
+function setFirstName(fName) {
+  //Add a parameter on both, and
+  if (fName !== undefined && typeof fName === "string") {
+    //check if the parameter exists and is a string
+    // return fName;
+    fullName += fName;
+    isSetFirstNameExecuted = true;
+    console.log("Test");
+  }
 }
 
-function setLastName(lName) { //Add a parameter on both, and
-    if (lName !== undefined && typeof lName === "string") { //check if the parameter exists and is a string
-        return lName;
-    }
+function setLastName(lName) {
+  //Add a parameter on both, and
+  if (lName !== undefined && typeof lName === "string") {
+    //check if the parameter exists and is a string
+    // return lName;
+    fullName += lName;
+    isSetLastNameExecuted = true;
+  }
 }
 
-if (fullName === undefined) { //Check if the fullName is empty
-    console.log("Achtung, Eintrag fehlt!"); //If it's empty, create a console.log with a warning
-}
+// if (fullName === undefined) {
+//   //Check if the fullName is empty
+//   console.log("Achtung, Eintrag fehlt!"); //If it's empty, create a console.log with a warning
+// }
 
 function getFullName() {
-    if (fullName === undefined) { //Check if the fullName is empty
-        console.log("Achtung, Eintrag fehlt!"); //If it's empty, create a console.log with a warning
-    } else {
-        return fullName;
+  console.log(isSetFirstNameExecuted);
+  console.log(isSetLastNameExecuted);
+    if (fullName === "") {
+        if (isSetFirstNameExecuted === false || isSetLastNameExecuted === false) {
+          return "Vor- oder Nachname fehlt!"
+      }
+    //Check if the fullName is empty
+    return "Achtung, Eintrag fehlt!"; //If it's empty, create a console.log with a warning
     }
+    else {
+    return fullName;
+    //   console.log("Test2");
+  }
 }
-
+setFirstName("Thomas");
+setLastName();
 console.log(getFullName());
-
-
-
-
